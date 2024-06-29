@@ -5,57 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <style>
-        img{
-            position: absolute;
-            margin-left:px;
-            width:1500px;
-            height:800px;}
-
-        body{
+        body {
             margin: 0;
             padding: 0;
-            background-color: #b0dee4;  /* Light blue background */
+            background-color: #b0dee4; /* Light blue background */
             font-family: Arial, sans-serif;
             display: flex;
-            height: 100vh;  /* Full viewport height */ }
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+        }
 
-        #title{
-            color: #ffffff;
-            z-index: 1;
-            position: relative;
-            text-align: center;
-            margin: 20px 0;}
-
-        #abt{
-            z-index: 1;
+        img {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            max-width: 100%; /* Ensure image does not exceed viewport width */
             position: absolute;
-            margin-top: 100px;
-            background: rgba(255, 255, 255, 0.8);  /* Semi-transparent background */
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        #title {
+            color: #ffffff;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #abt {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
             color: #0e0d0d;
             padding: 20px;
             border-radius: 10px;
             max-width: 800px;
             text-align: center;
-            backdrop-filter: blur(5px); }
+            backdrop-filter: blur(5px);
+            margin-top: 20px;
+        }
 
-        #return{
-           z-index: 1;
-           color: #ffffff;
-           position: absolute;
-           margin-top: 5px;
-           margin-left: 800px; }
-
+        #return {
+            color: #ffffff;
+            margin-top: 20px;
+        }
     </style>
-
 </head>
-
 <body>
 
-    <img src="./bottle2.png">
-    <h1 id="title"> Welcome To AquaTower</h1>
-    <p id="abt"> Welcome to AquaTower, where purity meets excellence. Founded on the principles of quality, sustainability, and innovation, AquaTower is dedicated to providing the finest mineral water that nature has to offer.<br> Our mission is simple: to ensure every sip you take is as pure and refreshing as the natural springs we source from</p>
-    
+    <img src="./bottle2.png" alt="AquaTower Image">
+    <h1 id="title">Welcome To AquaTower</h1>
+    <p id="abt">Welcome to AquaTower, where purity meets excellence. Founded on the principles of quality, sustainability, and innovation, AquaTower is dedicated to providing the finest mineral water that nature has to offer.<br> Our mission is simple: to ensure every sip you take is as pure and refreshing as the natural springs we source from.</p>
 
 </body>
-
 </html>
+
