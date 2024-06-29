@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            background-image: url('splashing-164355_640.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.3); /* Transparent black overlay */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            color: #333333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 8px;
+            color: #333333;
+        }
+        select, input[type="number"], input[type="text"], input[type="tel"], input[type="datetime-local"] {
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .order-summary {
+            margin-top: 20px;
+            background-color: #ffffff;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Order Online</h1>
+        <form id="orderForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="Enter 10-digit mobile number" required>
+
+            <label for="pickupDateTime">Pickup Date & Time:</label>
+            <input type="datetime-local" id="pickupDateTime" name="pickupDateTime" required>
+
+            <label for="20lit">20 Lit Can </label>
+            <input type="number" id="20lit" name="20lit" min="0" value="0">
+
+            <label for="2lit">2 Lit Bottle (9 pc per box)</label>
+            <select id="2lit" name="2lit">
+                <option value="0">0 boxes</option>
+                <option value="1">1 box</option>
+                <option value="2">2 boxes</option>
+                <option value="3">3 boxes</option>
+                <!-- Add more options as needed -->
+            </select>
+
+            <label for="1lit">1 Lit Bottle (12 pcs per box)</label>
+            <select id="1lit" name="1lit">
+                <option value="0">0 boxes</option>
+                <option value="1">1 box</option>
+                <option value="2">2 boxes</option>
+                <option value="3">3 boxes</option>
+                <!-- Add more options as needed -->
+            </select>
+
+            <label for="500ml">500 ml Bottle (25 pcs per box)</label>
+            <select id="500ml" name="500ml">
+                <option value="0">0 boxes</option>
+                <option value="1">1 box</option>
+                <option value="2">2 boxes</option>
+                <option value="3">3 boxes</option>
+                <!-- Add more options as needed -->
+            </select>
+
+            <label for="300ml">300 ml Bottle (30 pcs per box)</label>
+            <select id="300ml" name="300ml">
+                <option value="0">0 boxes</option>
+                <option value="1">1 box</option>
+                <option value="2">2 boxes</option>
+                <option value="3">3 boxes</option>
+                <!-- Add more options as needed -->
+            </select>
+
+            <input type="submit" value="Purchase">
+        </form>
+
+        <!-- Order Summary Section -->
+        <div class="order-summary" id="orderSummary">
+            <h2>Total Amount:</h2>
+            <p id="totalAmount">Rs. 0.00</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to calculate total amount and update order summary
+        function calculateTotal() {
+            // Calculate total price
+            let total = 0;
+            const rates = {
+                '20lit': 10, // Rs. 10 each for 20 Lit Can
+                '2lit': 117,  // Rs. 117 per box for 2 Lit Bottle
+                '1lit': 96,   // Rs. 96 per box for 1 Lit Bottle
+                '500ml': 137.5, // Rs. 137.5 per box for 500 ml Bottle
+                '300ml': 135, // Rs. 135 per box for 300 ml Bottle
+            };
+
+            // Calculate total price for each item
+            total += parseInt(document.getElementById('20lit').value) * rates['20lit'];
+            total += parseInt(document.getElementById('2lit').value) * (rates['2lit'] / 9);
+            total += parseInt(document.getElementById('1lit').value) * (rates['1lit'] / 12);
+            total += parseInt(document.getElementById('500ml').value) * (rates['500ml'] / 25);
+            total += parseInt(document.getElementById('300ml').value) * (rates['300ml'] / 30);
+
+            // Update order summary
+            document.getElementById('totalAmount').textContent = `Rs. ${total.toFixed(2)}`;
+        }
+
+        // Event listener for form submission
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Gather form data
+            const formData = new FormData(document.getElementById('orderForm'));
+            const customerName = formData.get('name');
+            const mobileNumber = formData.get('mobile');
+            const pickupDateTime = formData.get('pickupDateTime');
+
+            // Calculate total amount
+            calculateTotal();
+
+            // Replace with actual code to send order details (e.g., via SMS, WhatsApp, etc.)
+            const orderDetails = {
+                'Customer Name': customerName,
+                'Mobile Number': mobileNumber,
+                'Pickup Date & Time': pickupDateTime,
+                'Total Amount': document.getElementById('totalAmount').textContent
+            };
+            console.log(orderDetails); // For testing, log order details
+
+            // Show confirmation message
+            alert(`Order placed successfully!\nTotal Amount: ${document.getElementById('totalAmount').textContent}`);
+
+            // Reset form
+            document.getElementById('orderForm').reset();
+            // Reset order summary
+            document.getElementById('totalAmount').textContent = 'Rs. 0.00';
+        });
+
+        // Event listeners for input changes to recalculate total amount
+        document.getElementById('name').addEventListener('input', calculateTotal);
+        document.getElementById('mobile').addEventListener('input', calculateTotal);
+        document.getElementById('pickupDateTime').addEventListener('input', calculateTotal);
+        document.getElementById('20lit').addEventListener('input', calculateTotal);
+        document.getElementById('2lit').addEventListener('input', calculateTotal);
+        document.getElementById('1lit').addEventListener('input', calculateTotal);
+        document.getElementById('500ml').addEventListener('input', calculateTotal);
+        document.getElementById('300ml').addEventListener('input', calculateTotal);
+    </script>
+</body>
+</html>

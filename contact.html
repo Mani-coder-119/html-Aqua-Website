@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('./pexels-photo-3023769.webp') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+        }
+        #call {
+            text-align: center;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        #sub {
+            text-align: center;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        #sub2 {
+            position: absolute;
+            text-align: center;
+            font-style: normal;
+            margin-top: 50px;
+            margin-left: 100px;
+        }
+        .form-container {
+            position: absolute;
+            top: 220px;
+            left: 30%;
+            transform: translateX(-50%);
+            width: 300px;
+            padding: 20px;
+            border: 2px solid #ffffff;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .form-container input {
+            width: calc(100% - 22px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            outline: none;
+        }
+        .form-container input::placeholder {
+            color: #ffffff;
+            opacity: 0.5;
+        }
+        .form-container input:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .submit-btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="call">CONTACT</h1>
+    <hr>
+    <h3 id="sub">Our team of customer care is ready to hear you</h3>
+    <h3 id="sub2">Reach Out To Us!</h3>
+    <div class="form-container">
+        <form action="https://api.whatsapp.com/send" method="get" target="_blank">
+            <input type="text" name="firstName" placeholder="First Name" required>
+            <br>
+            <input type="text" name="lastName" placeholder="Last Name" required>
+            <br>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <br>
+            <input type="text" name="contactNumber" placeholder="Contact Number" required>
+            <br>
+            <input type="hidden" name="phone" value=8220182333>
+            <input type="submit" value="Submit" class="submit-btn">
+        </form>
+    </div>
+</body>
+</html>
